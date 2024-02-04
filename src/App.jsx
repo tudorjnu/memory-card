@@ -6,13 +6,7 @@ import { PropTypes } from "prop-types";
 
 function PokemonCard({ children, handleClick }) {
   return (
-    <div
-      onClick={handleClick}
-      style={{
-        backgroundColor: "#404040",
-        cursor: "pointer",
-      }}
-    >
+    <div onClick={handleClick} className="card">
       {children}
     </div>
   );
@@ -25,9 +19,15 @@ PokemonCard.propTypes = {
 
 function ScoreBoard({ currentScore, bestScore }) {
   return (
-    <div>
-      <span>Current Score: {currentScore}</span>
-      <span>Best Score: {bestScore}</span>
+    <div className="score-board">
+      <div>
+        <div style={{ fontWeight: "bold" }}>Current Score</div>
+        <div style={{ fontSize: "2rem" }}>{currentScore}</div>
+      </div>
+      <div>
+        <div style={{ fontWeight: "bold" }}>Best Score</div>
+        <div style={{ fontSize: "2rem" }}>{bestScore}</div>
+      </div>
     </div>
   );
 }
@@ -53,6 +53,7 @@ function App() {
       setDeck(newDeck);
       setCards(_.sampleSize(newDeck, 3));
       setCurrentScore(0);
+      alert("Game Over");
       setIsGameOver(false);
     }
   }, [isGameOver]);
@@ -74,27 +75,21 @@ function App() {
   };
 
   return (
-    <div>
+    <>
       <ScoreBoard currentScore={currentScore} bestScore={bestScore} />
-      <div
-        style={{
-          display: "grid",
-          gap: "1rem",
-          gridTemplateColumns: "repeat(8, minmax(50px, 100px))",
-        }}
-      >
+      <div className="pokemon-card-container">
         {cards.map((card) => {
           return (
-            <PokemonCard
+            <img
               key={card.index}
-              handleClick={() => handleCardClick(card.index)}
-            >
-              <img src={card.link} />
-            </PokemonCard>
+              onClick={() => handleCardClick(card.index)}
+              src={card.link}
+              className="pokemon-card"
+            />
           );
         })}
       </div>
-    </div>
+    </>
   );
 }
 
