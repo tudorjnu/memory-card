@@ -56,15 +56,15 @@ Modal.propTypes = {
 };
 
 function App() {
-  const [deck, setDeck] = useState(getDeck(5));
-  const [cards, setCards] = useState(_.sampleSize(deck, 3));
+  const [deck, setDeck] = useState(getDeck(100));
+  const [cards, setCards] = useState(_.sampleSize(deck, 24));
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
-    const sample = _.sampleSize(deck, 3);
+    const sample = _.sampleSize(deck, 24);
     setCards(sample);
   }, [deck, isGameOver]);
 
@@ -73,9 +73,9 @@ function App() {
       if (currentScore > bestScore) {
         setBestScore(currentScore);
       }
-      const newDeck = getDeck(5);
+      const newDeck = getDeck(100);
       setDeck(newDeck);
-      setCards(_.sampleSize(newDeck, 3));
+      setCards(_.sampleSize(newDeck, 24));
       setCurrentScore(0);
       setIsGameOver(false);
     }
