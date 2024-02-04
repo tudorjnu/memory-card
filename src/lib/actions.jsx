@@ -8,7 +8,6 @@ function sample(size) {
     randomNumbers.add(randomNumber);
   }
 
-  console.log(randomNumbers);
   return Array.from(randomNumbers);
 }
 
@@ -16,10 +15,11 @@ export function getDeck(nSamples = 100) {
   let images = [];
   const samples = sample(nSamples);
 
-  for (const index in samples) {
+  for (let i = 0; i < samples.length; i++) {
+    const cardNumber = samples[i];
     images.push({
-      number: index,
-      link: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index}.png`,
+      index: i,
+      link: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${cardNumber}.png`,
       clicked: false,
     });
   }
