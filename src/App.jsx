@@ -31,6 +31,12 @@ function ScoreBoard({ currentScore, bestScore }) {
     </div>
   );
 }
+
+ScoreBoard.propTypes = {
+  currentScore: PropTypes.number,
+  bestScore: PropTypes.number,
+};
+
 function Modal({ showModal, handleModalClose }) {
   if (!showModal) {
     return null;
@@ -43,6 +49,11 @@ function Modal({ showModal, handleModalClose }) {
     </div>
   );
 }
+
+Modal.propTypes = {
+  showModal: PropTypes.bool,
+  handleModalClose: PropTypes.func,
+};
 
 function App() {
   const [deck, setDeck] = useState(getDeck(5));
