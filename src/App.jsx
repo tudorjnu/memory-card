@@ -70,6 +70,7 @@ function App() {
 
   useEffect(() => {
     if (isGameOver) {
+      setShowModal(true);
       if (currentScore > bestScore) {
         setBestScore(currentScore);
       }
