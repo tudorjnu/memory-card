@@ -31,6 +31,18 @@ function ScoreBoard({ currentScore, bestScore }) {
     </div>
   );
 }
+function Modal({ showModal, handleModalClose }) {
+  if (!showModal) {
+    return null;
+  }
+  return (
+    <div onClick={handleModalClose} className={"modal"}>
+      <div className="modal-content">
+        <h1>Game Over</h1>
+      </div>
+    </div>
+  );
+}
 
 function App() {
   const [deck, setDeck] = useState(getDeck(5));
@@ -38,6 +50,7 @@ function App() {
   const [currentScore, setCurrentScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const sample = _.sampleSize(deck, 3);
@@ -53,7 +66,6 @@ function App() {
       setDeck(newDeck);
       setCards(_.sampleSize(newDeck, 3));
       setCurrentScore(0);
-      alert("Game Over");
       setIsGameOver(false);
     }
   }, [isGameOver]);
@@ -74,6 +86,10 @@ function App() {
     }
   };
 
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+
   return (
     <>
       <ScoreBoard currentScore={currentScore} bestScore={bestScore} />
@@ -89,6 +105,7 @@ function App() {
           );
         })}
       </div>
+      <Modal showModal={showModal} handleModalClose={handleModalClose} />
     </>
   );
 }
