@@ -2,6 +2,8 @@
 
 The game works by clicking one of the available cards and trying to avoid clicking the same card twice. The game ends when all possible cards are clicked once.
 
+Site can be viewed here: [https://memory-card-iota-nine.vercel.app/](https://memory-card-iota-nine.vercel.app/)
+
 ## 💡 Skills
 
 - Effects
